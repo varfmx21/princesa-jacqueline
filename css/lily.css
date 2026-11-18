@@ -1,0 +1,148 @@
+/* ===== LIRIO ROSA CON ORILLAS BLANCAS ===== */
+:root {
+  --lily-pink: #ff4fa3;
+  --lily-pink-light: #ff9ccc;
+  --lily-pink-deep: #c2185b;
+}
+
+/* Resplandor detrás de la flor: de cian a rosa */
+.flower .flower__leafs::after {
+  background-color: #ff7ac0;
+  filter: blur(10vmin);
+}
+
+/* Pétalo base: forma puntiaguda, orillas blancas, vena central y manchitas */
+.flower .flower__leafs .flower__leaf {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 7vmin;
+  height: 15vmin;
+  border-radius: 0;
+  clip-path: polygon(50% 0%, 72% 12%, 90% 38%, 100% 68%, 82% 100%, 18% 100%, 0% 68%, 10% 38%, 28% 12%);
+  transform-origin: bottom center;
+  opacity: 0.95;
+  box-shadow: none;
+  z-index: 1;
+  background-color: var(--lily-pink);
+  background-image:
+    /* orillas blancas */
+    linear-gradient(90deg, #fff 0%, rgba(255,255,255,0.55) 9%, transparent 26%,
+                    transparent 74%, rgba(255,255,255,0.55) 91%, #fff 100%),
+    /* punta blanca */
+    linear-gradient(to bottom, #fff 0%, rgba(255,255,255,0.6) 7%, transparent 22%),
+    /* vena central */
+    linear-gradient(90deg, transparent 47%, rgba(194,24,91,0.55) 50%, transparent 53%),
+    /* manchitas del lirio */
+    radial-gradient(circle at 38% 70%, var(--lily-pink-deep) 0 3%, transparent 4%),
+    radial-gradient(circle at 62% 62%, var(--lily-pink-deep) 0 3%, transparent 4%),
+    radial-gradient(circle at 45% 52%, var(--lily-pink-deep) 0 2.5%, transparent 3.5%),
+    radial-gradient(circle at 57% 78%, var(--lily-pink-deep) 0 2.5%, transparent 3.5%),
+    radial-gradient(circle at 50% 66%, var(--lily-pink-deep) 0 2%, transparent 3%),
+    /* degradado rosa: más intenso en la base */
+    linear-gradient(to top, #e0348a, var(--lily-pink) 45%, var(--lily-pink-light));
+}
+
+/* Pétalos de atrás (más pequeños, más claros) */
+.flower .flower__leafs .flower__leaf--5 {
+  height: 13vmin;
+  width: 6vmin;
+  z-index: 0;
+  opacity: 0.8;
+  filter: brightness(1.08);
+  transform: translateX(-50%) rotate(-62deg) rotateX(20deg);
+}
+.flower .flower__leafs .flower__leaf--6 {
+  height: 13vmin;
+  width: 6vmin;
+  z-index: 0;
+  opacity: 0.8;
+  filter: brightness(1.08);
+  transform: translateX(-50%) rotate(62deg) rotateX(20deg);
+}
+
+/* Pétalos laterales */
+.flower .flower__leafs .flower__leaf--1 {
+  transform: translateX(-50%) rotate(38deg) rotateX(12deg);
+}
+.flower .flower__leafs .flower__leaf--3 {
+  transform: translateX(-50%) rotate(-38deg) rotateX(12deg);
+}
+
+/* Pétalo central frontal */
+.flower .flower__leafs .flower__leaf--2 {
+  height: 16vmin;
+  transform: translateX(-50%) rotate(0deg) rotateX(-6deg);
+  z-index: 2;
+}
+
+/* Pétalo curvado hacia el frente (reemplaza al pétalo inclinado original) */
+.flower .flower__leafs .flower__leaf--4 {
+  width: 7vmin;
+  height: 11vmin;
+  transform-origin: bottom center;
+  transform: translateX(-50%) rotate(14deg) rotateX(35deg);
+  z-index: 3;
+  opacity: 0.9;
+}
+
+/* Garganta del lirio: centro blanco-rosado (antes el círculo blanco) */
+.flower .flower__white-circle {
+  left: -2.5vmin;
+  top: 5vmin;
+  width: 5vmin;
+  height: 6vmin;
+  z-index: 4;
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  background: radial-gradient(ellipse at 50% 70%, #ffe3f1 0%, #ff8cc6 55%, #e0348a 100%);
+  box-shadow: 0 0 2vmin rgba(255, 140, 200, 0.7);
+}
+
+/* Anteras (antes el centro amarillo con textura) */
+.flower .flower__white-circle::after {
+  left: 50%;
+  top: -35%;
+  width: 70%;
+  height: 40%;
+  background-image: radial-gradient(ellipse, #9a4a12 0%, #6b2f0a 70%, transparent 72%);
+  background-color: transparent;
+  filter: drop-shadow(0 0 0.3vmin rgba(255, 190, 120, 0.9));
+}
+
+/* Estambres: 3 filamentos con antera oscura */
+.flower .flower__white-circle::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 40%;
+  transform: translateX(-50%);
+  width: 8vmin;
+  height: 8vmin;
+  z-index: 5;
+  background-image:
+    radial-gradient(ellipse 0.8vmin 1.3vmin at 12% 8%,  #7a3410 70%, transparent 75%),
+    radial-gradient(ellipse 0.8vmin 1.3vmin at 50% 0%,  #7a3410 70%, transparent 75%),
+    radial-gradient(ellipse 0.8vmin 1.3vmin at 88% 8%,  #7a3410 70%, transparent 75%),
+    linear-gradient(-20deg, transparent 47%, #f7d6e6 49%, #f7d6e6 51%, transparent 53%),
+    linear-gradient(0deg,   transparent 48%, #f7d6e6 49.5%, #f7d6e6 51%, transparent 52.5%),
+    linear-gradient(20deg,  transparent 47%, #f7d6e6 49%, #f7d6e6 51%, transparent 53%);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+/* Luciérnagas: de cian/amarillo a rosa/blanco */
+.flower .flower__light {
+  background-color: #fff3a8;
+}
+.flower .flower__light:nth-child(odd) {
+  background-color: #ff8cc6;
+}
+
+/* Título: cabe en una o dos líneas con el mensaje más largo */
+.title {
+  white-space: normal;
+  text-align: center;
+  max-width: 90vw;
+  font-size: clamp(1.4rem, 6vmin, 4rem);
+  line-height: 1.2;
+}
